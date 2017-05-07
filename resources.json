@@ -1,0 +1,5 @@
+{
+    "packages" : {
+        "beagle-2d" : "resources/beagle-2d.json"
+    }
+}
