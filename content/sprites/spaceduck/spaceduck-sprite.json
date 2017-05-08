@@ -35,7 +35,7 @@
                 }
             },
             {
-                "name" : "spaceduck_firing",
+                "name" : "spaceduck_mouth_open",
                 "sequence" : {
                     "loop" : true,
                     "timescale": 4.0,
@@ -47,10 +47,10 @@
                     "curves" : {
                         "default" : { 
                             "texture_name" : [
-                                { "t": 0.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_0" },
-                                { "t": 1.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_1" },
-                                { "t": 2.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_2" },
-                                { "t": 3.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_3" }
+                                { "t": 0.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_0" },
+                                { "t": 1.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_1" },
+                                { "t": 2.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_2" },
+                                { "t": 3.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_3" }
                             ]
                         }
                     }

@@ -7,7 +7,7 @@ class game(bgl.simple_tick_manager):
 
     def init(self):
         self.player = self.create_tickable( player() )
-        self.bgfx_gravitywave = self.create_tickable( bgfx_gravitywave() )
+        self.bgfx_gravitywave = self.create_tickable( bgfx_gravitywave( player = self.player ) )
         self.last_frame = bgl.framebuffer.from_screen()
         self.current_frame = bgl.framebuffer.from_screen()
 
@@ -22,6 +22,7 @@ class game(bgl.simple_tick_manager):
                 self.last_frame.render_processed( bgl.assets.get("beagle-2d/shader/passthru") )
                 self.bgfx_gravitywave.render()
                 self.player.render()
+                self.player.player_bullets.render()
 
         self.current_frame.render_processed( bgl.assets.get("beagle-2d/shader/passthru") )
 

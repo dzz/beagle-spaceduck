@@ -1,4 +1,5 @@
 from client.beagle.beagle_api import api as bgl
+from .player_bullets import player_bullets
 
 class player(bgl.simple_tick_manager):
     def __init__(self, **kwargs):
@@ -6,35 +7,51 @@ class player(bgl.simple_tick_manager):
         self.primitive = bgl.primitive.unit_uv_square
         self.shader = bgl.assets.get("beagle-2d/shader/beagle-2d")
         self.view = bgl.assets.get("beagle-2d/coordsys/16:9")
-        self.sequencer = self.create_tickable( bgl.assets.get("spaceduck-sprite/curve_sequence/spaceduck_mouth_closed") )
+        self.idle_sequencer = self.create_tickable( bgl.assets.get("spaceduck-sprite/curve_sequence/spaceduck_mouth_closed") )
+        self.firing_sequencer = self.create_tickable( bgl.assets.get("spaceduck-sprite/curve_sequence/spaceduck_mouth_open") )
+        self.player_bullets = self.create_tickable( player_bullets( player = self ) )
 
         self.x = 0.0
         self.y = 0.0
 
+        self.firing = False
 
     def tick(self):
+        self.gamepad = bgl.gamepads.find_primary()
         bgl.simple_tick_manager.tick(self)
-        diff_x = self.x + bgl.gamepads.find_primary().left_stick[0]*0.7;
-        diff_y = self.y + bgl.gamepads.find_primary().left_stick[1]*0.7;
+        diff_x = self.x + self.gamepad.left_stick[0]*0.9;
+        diff_y = self.y + self.gamepad.left_stick[1]*0.9;
 
-        self.x = (self.x * 0.8) + (diff_x*0.2)
-        self.y = (self.y * 0.8) + (diff_y*0.2)
+        if(self.gamepad.button_down( bgl.gamepads.buttons.A )):
+                self.firing = True
+        else:
+                self.firing = False
 
-        if(self.x < -7): 
-            self.x = -7
-        if(self.x > 7 ):
-            self.x =7
-        if(self.y < -4):
-            self.y = -4
-        if(self.y > 4 ):
-            self.y =4
+
+        self.x = (self.x * 0.9) + (diff_x*0.1)
+        self.y = (self.y * 0.9) + (diff_y*0.1)
+
+        if(self.x < -10): 
+            self.x = -10
+        if(self.x > 10 ):
+            self.x =10
+        if(self.y < -5):
+            self.y = -5
+        if(self.y > 5 ):
+            self.y =5
 
        
     def get_shader_params(self):
+
+        if self.firing:
+            sequencer = self.firing_sequencer
+        else:
+            sequencer = self.idle_sequencer
+
         return {
-            "texBuffer"            : bgl.assets.get( self.sequencer.animated_value("texture_name") ),
+            "texBuffer"            : bgl.assets.get( sequencer.animated_value("texture_name") ),
             "translation_local"    : [ self.x, self.y ],
-            "scale_local"          : [ 1.0,1.0],
+            "scale_local"          : [ 0.75,0.75],
             "translation_world"    : [ 0, 0],
             "scale_world"          : [ 1, 1],
             "view"                 : self.view,

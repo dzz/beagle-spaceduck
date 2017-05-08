@@ -4,13 +4,17 @@
 
 in vec2 uv;
 uniform float time;
+uniform float player_y;
+uniform sampler2D background;
 uniform sampler2D gradient;
 uniform sampler2D overlay;
 
 void main(void) {
 
     vec2 overlay_uv = uv;
+    vec2 background_uv = uv;
 
+    background_uv += player_y*-0.02;
     overlay_uv.y += sin(time+uv.x);
     float time_modulated = time + sin(time*2);
     float v1_wiggle_mod = sin((uv.y+time_modulated)*2)*0.3;
@@ -26,8 +30,8 @@ void main(void) {
     vec4 blue = texture( gradient, grad_coords*1.01 )*vec4(0.0,0.0,1.0,1.0);
 
 
-    vec4 composited = (red + green + blue * 0.5) * (1.4*texture( overlay, overlay_uv));
-    composited.a = 0.4;
+    vec4 composited = texture(background, background_uv) + (red + green + blue * 0.5) * (1.4*texture( overlay, overlay_uv));
+    composited.a = 0.8;
     gl_FragColor = composited;
 }
 

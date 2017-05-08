@@ -10,7 +10,8 @@
         ],
         "texture" :[ 
             { "name" : "space_gradient_0", "filename" : "content/shader_libs/textures/space_gradient_0.png", "filtered" : true },
-            { "name" : "space_overlay_0", "filename" : "content/shader_libs/textures/space_overlay_0.png", "filtered" : true } 
+            { "name" : "space_overlay_0", "filename" : "content/shader_libs/textures/space_overlay_0.png", "filtered" : true } ,
+            { "name" : "space_background_0", "filename" : "content/shader_libs/textures/space_background_0.png", "filtered" : true } 
         ]
     }
 }
