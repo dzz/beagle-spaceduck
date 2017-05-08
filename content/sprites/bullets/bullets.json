@@ -1,0 +1,6 @@
+{
+    "preload" : true,
+    "resources" : {
+        "texture" : [ { "name" : "basic_bullet", "filename" : "content/sprites/bullets/basic_bullet.png", "filtered" : true } ]
+    }
+}

@@ -2,6 +2,7 @@
     "packages" : {
         "beagle-2d" : "resources/beagle-2d.json",
         "spaceduck-sprite" : "content/sprites/spaceduck/spaceduck-sprite.json",
+        "bullets" : "content/sprites/bullets/bullets.json",
         "bgfx-shaders" : "content/shader_libs/bgfx.json"
     }
 }

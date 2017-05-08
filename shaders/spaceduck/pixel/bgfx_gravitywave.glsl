@@ -5,13 +5,14 @@
 in vec2 uv;
 uniform float time;
 uniform float player_y;
+uniform float player_x;
 uniform sampler2D background;
 uniform sampler2D gradient;
 uniform sampler2D overlay;
 
 void main(void) {
 
-    vec2 overlay_uv = uv;
+    vec2 overlay_uv = uv + player_x;
     vec2 background_uv = uv;
 
     background_uv += player_y*-0.02;
@@ -30,8 +31,9 @@ void main(void) {
     vec4 blue = texture( gradient, grad_coords*1.01 )*vec4(0.0,0.0,1.0,1.0);
 
 
+    background_uv.x += v1;
     vec4 composited = texture(background, background_uv) + (red + green + blue * 0.5) * (1.4*texture( overlay, overlay_uv));
     composited.a = 0.8;
-    gl_FragColor = composited;
+    gl_FragColor = composited * composited;
 }
 

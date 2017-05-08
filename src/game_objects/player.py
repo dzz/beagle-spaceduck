@@ -31,14 +31,14 @@ class player(bgl.simple_tick_manager):
         self.x = (self.x * 0.9) + (diff_x*0.1)
         self.y = (self.y * 0.9) + (diff_y*0.1)
 
-        if(self.x < -10): 
-            self.x = -10
-        if(self.x > 10 ):
-            self.x =10
-        if(self.y < -5):
-            self.y = -5
-        if(self.y > 5 ):
-            self.y =5
+        if(self.x < -7.2): 
+            self.x = -7.2
+        if(self.x > 7.2 ):
+            self.x =7.2
+        if(self.y < -4):
+            self.y = -4
+        if(self.y > 4 ):
+            self.y =4
 
        
     def get_shader_params(self):
@@ -50,9 +50,9 @@ class player(bgl.simple_tick_manager):
 
         return {
             "texBuffer"            : bgl.assets.get( sequencer.animated_value("texture_name") ),
-            "translation_local"    : [ self.x, self.y ],
+            "translation_local"    : [ 0, 0 ],
             "scale_local"          : [ 0.75,0.75],
-            "translation_world"    : [ 0, 0],
+            "translation_world"    : [ self.x, self.y],
             "scale_world"          : [ 1, 1],
             "view"                 : self.view,
             "rotation_local"       : 0.0,
