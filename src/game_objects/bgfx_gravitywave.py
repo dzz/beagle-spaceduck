@@ -1,7 +1,7 @@
 from client.beagle.beagle_api import api as bgl
 
 class bgfx_gravitywave():
-    speed = 0.01
+    speed = 0.02
 
     def __init__(self):
         self.primitive = bgl.primitive.unit_uv_square
