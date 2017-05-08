@@ -1,0 +1,11 @@
+{
+    "preload" : true,
+    "resources" : {
+        "texture" : [
+        { "name" : "star_0", "filename" : "content/sprites/stars/star_0.png", "filtered" : false },
+        { "name" : "star_1", "filename" : "content/sprites/stars/star_1.png", "filtered" : false },
+        { "name" : "star_2", "filename" : "content/sprites/stars/star_2.png", "filtered" : false },
+        { "name" : "star_3", "filename" : "content/sprites/stars/star_3.png", "filtered" : false }
+        ]
+    }
+}

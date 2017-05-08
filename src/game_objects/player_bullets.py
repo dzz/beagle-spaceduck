@@ -9,11 +9,14 @@ class basic_bullet():
         self.x = kwargs['x']
         self.y = kwargs['y']
         self.vx = kwargs['vx']
+        self.halo_amt = 0.0
 
     def tick(self):
         self.x += self.vx
-        self.vx *= 1.1
-        self.y = self.y + (0.02 * sin(self.x*2))
+        self.vx *= 1.03
+        self.y = self.y + (0.02 * sin(self.x*0.3))
+        if(self.halo_amt<1):
+            self.halo_amt += 0.04
         if(self.x > 10):
             return False
         return True
@@ -23,22 +26,22 @@ class basic_bullet():
             return {
                 "texBuffer"            : basic_bullet.texture,
                 "translation_local"    : [ 0, 0 ],
-                "scale_local"          : [ 0.3,0.4],
+                "scale_local"          : [ 1.2 + self.vx,1.2 * self.halo_amt],
                 "translation_world"    : [ self.x, self.y],
                 "scale_world"          : [ 1, 1],
                 "view"                 : basic_bullet.view,
-                "rotation_local"       : self.x * -3,
-                "filter_color"         : [ 0.4, 0.2, 1.0, 1.0],
+                "rotation_local"       : self.x * -0.1,
+                "filter_color"         : [ 0.4 * (1-self.halo_amt),0.2 * self.halo_amt,0.3 + (0.2*self.halo_amt) ,0.2 * self.halo_amt],
                 "uv_translate"         : [ 0,0 ] }
         else:
             return { 
                 "texBuffer"            : basic_bullet.texture,
                 "translation_local"    : [ 0, 0 ],
-                "scale_local"          : [ 0.2,0.2],
+                "scale_local"          : [ 0.1 + (0.1 * self.halo_amt),(0.1 * self.halo_amt) + 0.1],
                 "translation_world"    : [ self.x, self.y],
                 "scale_world"          : [ 1, 1],
                 "view"                 : basic_bullet.view,
-                "rotation_local"       : self.x * 4,
+                "rotation_local"       : self.x * 0.8,
                 "filter_color"         : [ 1.0, 1.0, 1.0, 1.0],
                 "uv_translate"         : [ 0,0 ] }
 
@@ -65,7 +68,7 @@ class player_bullets(bgl.purging_tick_manager):
     def fire(self):
         if(self.cooldown < 0.0):
             self.create_bullet()
-            self.cooldown = 0.4
+            self.cooldown = 0.8
 
     def create_bullet(self):
         self.create_tickable( basic_bullet( x = self.player.x + 0.2, y = self.player.y, vx = 0.15 ) )

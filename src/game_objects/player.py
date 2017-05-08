@@ -51,9 +51,9 @@ class player(bgl.simple_tick_manager):
         return {
             "texBuffer"            : bgl.assets.get( sequencer.animated_value("texture_name") ),
             "translation_local"    : [ 0, 0 ],
-            "scale_local"          : [ 0.75,0.75],
+            "scale_local"          : [ 0.8, 0.6 ],
             "translation_world"    : [ self.x, self.y],
-            "scale_world"          : [ 1, 1],
+            "scale_world"          : [ 1.0,1.0 ],
             "view"                 : self.view,
             "rotation_local"       : 0.0,
             "filter_color"         : [ 1.0, 1.0, 1.0, 1.0],
