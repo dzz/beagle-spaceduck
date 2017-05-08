@@ -14,7 +14,6 @@ class game(bgl.simple_tick_manager):
     def render(self):
         self.bgfx_gravitywave.render()
 
-
         with bgl.context.render_target( self.last_frame):
             self.current_frame.render_processed( bgl.assets.get("beagle-2d/shader/passthru") )
 
