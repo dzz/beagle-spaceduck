@@ -1,4 +1,4 @@
-from .spaceduck import game_instance as game
+from .src import game_instance as game
 
 def init():
     game.init()

@@ -1,0 +1,12 @@
+{
+    "preload"   : true,
+    "resources" : {
+        "shader" : [
+        {
+            "name" : "bgfx_gravitywave",
+            "vertex_program" : "beagle-2d/vertex/no_transform",
+            "pixel_program" : "spaceduck/pixel/bgfx_gravitywave"
+        }
+        ]
+    }
+}

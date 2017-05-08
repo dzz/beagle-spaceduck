@@ -16,7 +16,7 @@
                 "name" : "spaceduck_mouth_closed",
                 "sequence" : {
                     "loop" : true,
-                    "timescale": 4.0,
+                    "timescale": 8.0,
                     "start" : 0.0,
                     "end" : 4.0,
                     "scenes" : {
