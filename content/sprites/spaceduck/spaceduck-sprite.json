@@ -1,0 +1,48 @@
+{
+    "preload" : true,
+    "resources" : {
+        "texture" : [
+        { "name" : "sd_mouth_closed_0", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0000.png", "filtered" : false },
+        { "name" : "sd_mouth_closed_1", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0001.png", "filtered" : false },
+        { "name" : "sd_mouth_closed_2", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0002.png", "filtered" : false },
+        { "name" : "sd_mouth_closed_3", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0003.png", "filtered" : false },
+        { "name" : "sd_mouth_open_0", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0000.png", "filtered" : false },
+        { "name" : "sd_mouth_open_1", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0001.png", "filtered" : false },
+        { "name" : "sd_mouth_open_2", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0002.png", "filtered" : false },
+        { "name" : "sd_mouth_open_3", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0003.png", "filtered" : false }
+        ],
+            "curve_sequence" : [
+            {
+                "name" : "mouth_closed",
+                "sequence" : {
+                    "loop" : true,
+                    "timescale": 4.0,
+                    "start" : 0.0,
+                    "end" : 4.0,
+                    "scenes" : {
+                        "default" : { "start" : 0.0, "end" : 4.0 },
+                        "firing" : { "start" : 0.0, "end" : 4.0 }
+                    },
+                    "curves" : {
+                        "default" : { 
+                            "texture_asset" : [
+                                { "t": 0.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_0" },
+                                { "t": 1.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_1" },
+                                { "t": 2.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_2" },
+                                { "t": 3.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_3" }
+                            ]
+                        },
+                        "firing" : { 
+                            "texture_asset" : [
+                                { "t": 0.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_0" },
+                                { "t": 1.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_1" },
+                                { "t": 2.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_2" },
+                                { "t": 3.0, "string" : "spaceduck-sprite/texture/sd_mouth_open_3" }
+                            ]
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

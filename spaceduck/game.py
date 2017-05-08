@@ -1,11 +1,8 @@
-class game():
-    def __init__(self):
-        pass
+from client.beagle.beagle_api import api as bgl
+
+class game(bgl.simple_tick_manager):
 
     def init(self):
-        pass
-
-    def tick(self):
         pass
 
     def render(self):

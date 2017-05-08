@@ -1,5 +1,6 @@
 {
     "packages" : {
-        "beagle-2d" : "resources/beagle-2d.json"
+        "beagle-2d" : "resources/beagle-2d.json",
+        "spaceduck-sprite" : "content/sprites/spaceduck/spaceduck-sprite.json"
     }
 }

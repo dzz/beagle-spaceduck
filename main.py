@@ -1,4 +1,4 @@
-from .beagle_game import game_instance as game
+from .spaceduck import game_instance as game
 
 def init():
     game.init()
