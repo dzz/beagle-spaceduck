@@ -1,5 +1,6 @@
 from random import choice
 from random import uniform
+from itertools import groupby
 
 from client.beagle.beagle_api import api as bgl
 
@@ -36,6 +37,7 @@ class star():
        return {
            "texBuffer"            : self.texture,
            "translation_local"    : [ 0, 0 ],
+
            "scale_local"          : [ self.s, self.s ],
            "translation_world"    : [ self.x, self.y],
            "scale_world"          : [ 1, 1],
@@ -54,7 +56,9 @@ class starfield(bgl.purging_tick_manager):
             self.create_tickable( star( s = uniform(0.01,0.8), x = 20, vx = uniform(0.1,0.9), y = uniform( -5, 5) ) )
 
     def render(self):
-        for tickable in self.tickables:
-            star.primitive.render_shaded( star.shader, tickable.get_shader_params() ) 
+        grouped = groupby( self.tickables, lambda x : x.texture )
+        for texture, group in grouped:
+            for tickable in group:
+                star.primitive.render_shaded( star.shader, tickable.get_shader_params() ) 
 
 
