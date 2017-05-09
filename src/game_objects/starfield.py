@@ -26,6 +26,9 @@ class star():
         self.y = kwargs['y']
         self.vx = kwargs['vx']
         self.s = kwargs['s']
+
+        self.s *= 0.5 + (1-self.vx)
+
         self.c = list(map( lambda x : x * self.s, choice( star.colors) ))
         self.texture = choice( star.textures )
 
@@ -42,7 +45,7 @@ class star():
            "translation_world"    : [ self.x, self.y],
            "scale_world"          : [ 1, 1],
            "view"                 : star.view,
-           "rotation_local"       : self.x * -0.1 * self.vx,
+           "rotation_local"       : self.x * -1.1 * self.vx,
            "filter_color"         : self.c,
            "uv_translate"         : [ 0,0 ] }
 
@@ -52,8 +55,8 @@ class starfield(bgl.purging_tick_manager):
 
     def tick(self):
         bgl.purging_tick_manager.tick(self)
-        if( uniform(0.0,1.0) > 0.7 ):
-            self.create_tickable( star( s = uniform(0.01,0.8), x = 20, vx = uniform(0.1,0.9), y = uniform( -5, 5) ) )
+        if( uniform(0.0,1.0) > 0.2 ):
+            self.create_tickable( star( s = uniform(0.01,0.3), x = 20, vx = uniform(0.1,0.5), y = uniform( -5, 5) ) )
 
     def render(self):
         grouped = groupby( self.tickables, lambda x : x.texture )

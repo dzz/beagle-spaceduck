@@ -13,7 +13,7 @@ class game(bgl.simple_tick_manager):
         self.player = self.create_tickable( player() )
         self.last_frame = bgl.framebuffer.from_screen()
         self.current_frame = bgl.framebuffer.from_screen()
-        self.blur_effects_buffer = bgl.framebuffer.from_dims(32,32, filtered = True )
+        self.blur_effects_buffer = bgl.framebuffer.from_dims(16,128, filtered = True )
         self.bgfx_gravitywave = self.create_tickable( bgfx_gravitywave( player = self.player, distortion_buffer = self.blur_effects_buffer.get_texture()) )
         self.starfield = self.create_tickable( starfield() )
 
@@ -26,7 +26,7 @@ class game(bgl.simple_tick_manager):
 
         with bgl.context.render_target( self.blur_effects_buffer):
                 with bgl.blendmode.alpha_over:
-                    uniform_fade.apply_fadeout(0.3)
+                    uniform_fade.apply_fadeout(0.2)
                 with bgl.blendmode.add:
                     self.starfield.render()
                 with bgl.blendmode.alpha_over:
