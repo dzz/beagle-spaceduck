@@ -25,6 +25,7 @@ void main(void) {
     gl_Position.x =  ((xt)+translation_world.x) * scale_world.x * view.x;
     gl_Position.y =  ((yt)+translation_world.y) * scale_world.y * view.y;
     gl_Position.z = 0;
+    gl_Position.w = 1;
 
     uv=uv_position;
         
