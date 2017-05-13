@@ -1,0 +1,15 @@
+{
+        "preload" : true,
+                "resources" : {
+                        "curve": [
+                        {
+                                "name" : "up_down",
+                                "points" : [
+                                { "t" : 0.0, "vec" : [ 0.0,-5.0 ] },
+                                { "t" : 5.0, "vec" : [ 0.0,5.0 ], "smooth" : "sqr" },
+                                { "t" : 10.0, "vec" : [ 0.0,0.0 ] }
+                                ]
+                        }
+                        ]
+                }
+}

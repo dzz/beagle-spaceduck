@@ -2,6 +2,8 @@
     "packages" : {
         "beagle-2d" : "shaders/beagle-2d/beagle-2d.json",
         "spaceduck-sprite" : "content/sprites/spaceduck/spaceduck-sprite.json",
+        "enemy_paths" : "content/paths/enemy_paths.json",
+        "emitter_paths" : "content/paths/emitter_paths.json",
         "bullets" : "content/sprites/bullets/bullets.json",
         "stars" : "content/sprites/stars/stars.json",
         "bgfx-shaders" : "content/shader_libs/bgfx.json"
