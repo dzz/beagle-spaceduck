@@ -3,6 +3,7 @@ from client.beagle.beagle_api import api as bgl
 from .game_objects.player import player
 from .game_objects.bgfx_gravitywave import bgfx_gravitywave
 from .game_objects.starfield import starfield
+from .game_objects.enemies import enemies
 from .gfx_util.uniform_fade import uniform_fade
 
 class game(bgl.simple_tick_manager):
@@ -11,6 +12,7 @@ class game(bgl.simple_tick_manager):
 
     def init(self):
         self.player = self.create_tickable( player() )
+        self.enemies = self.create_tickable( enemies() )
         self.last_frame = bgl.framebuffer.from_screen()
         self.current_frame = bgl.framebuffer.from_screen()
         self.blur_effects_buffer = bgl.framebuffer.from_dims(16,128, filtered = True )
@@ -19,8 +21,6 @@ class game(bgl.simple_tick_manager):
 
 
     def render(self):
-        self.bgfx_gravitywave.render()
-
         with bgl.context.render_target( self.last_frame):
             self.current_frame.render_processed( game.passthru_shader )
 
@@ -40,6 +40,7 @@ class game(bgl.simple_tick_manager):
                 with bgl.blendmode.add:
                     self.starfield.render()
                     self.blur_effects_buffer.render_processed( game.passthru_shader )
+                self.enemies.render()
                 self.player.render()
 
         self.current_frame.render_processed( game.passthru_shader )
