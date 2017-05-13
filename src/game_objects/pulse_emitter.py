@@ -12,7 +12,7 @@ class pulse_emitter():
         self.ramp_speed = kwargs['ramp_speed']
         self.template = kwargs['template']
         self.ramp = 0.0
-        self.driver = bgl.curve_driver( curve = bgl.assets.get("emitter_paths/curve/" + kwargs["sequence_key"]), rate = pulse_emitter.driver_rate )
+        self.driver = bgl.curve_driver( curve = bgl.assets.get("emitter_paths/curve/" + kwargs["driver"]), rate = pulse_emitter.driver_rate )
 
     def emit(self):
         self.template(self)

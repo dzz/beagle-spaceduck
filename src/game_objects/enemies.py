@@ -1,6 +1,7 @@
 from math import sin
 from client.beagle.beagle_api import api as bgl
 from .pulse_emitter import pulse_emitter
+from .motion_modulators import motion_modulators
 
 class basic_enemy():
     view = bgl.assets.get("beagle-2d/coordsys/16:9")
@@ -8,10 +9,17 @@ class basic_enemy():
     driver_rate = 1.0 / 60.0
 
     def __init__(self, **kwargs):
-        self.x = self.base_x = kwargs['x']
-        self.y = self.base_y = kwargs['y']
-        self.driver = bgl.curve_driver( curve = bgl.assets.get("enemy_paths/curve/" + kwargs["sequence_key"] ),
+        self.x = self.base_x = kwargs['emitter'].x
+        self.y = self.base_y = kwargs['emitter'].y
+        self.driver = bgl.curve_driver( curve = bgl.assets.get("enemy_paths/curve/" + kwargs["driver"] ),
                                           rate = basic_enemy.driver_rate )
+
+
+        modulator_def = kwargs['modulator']
+        self.modulator_args = [self]
+        self.modulator_args.extend(modulator_def[1])
+
+        self.modulator = motion_modulators[modulator_def[0]]
 
     def tick(self):
         self.driver.tick()
@@ -21,6 +29,9 @@ class basic_enemy():
         p = self.driver.value()
         self.x = self.base_x + p[0]
         self.y = self.base_y + p[1]
+
+        print(self.modulator_args)
+        self.modulator(*self.modulator_args)
 
         return True
 
@@ -53,14 +64,18 @@ class enemies(bgl.simple_tick_manager):
                                       rate = 1.0/60.0, 
                                       start = 0.0,
                                       ramp_speed = 0.05, 
-                                      sequence_key = "up_down",
-                                      template = (lambda emitter : self.create_enemy(emitter, "slow_move_left") ) ))
+                                      driver = "up_down",
+                                      template = (lambda emitter : self.create_enemy(
+                                                                        emitter = emitter, 
+                                                                        driver = "slow_move_left",
+                                                                        modulator = ( "wiggle_y",[ 2.1, 0.9 ] )
+                                                                    ) ) ))
 
     def create_emitter(self, emitter ):
         return self.emitters.create_tickable( emitter )
 
-    def create_enemy( self, emitter, sequence_key ):
-        return self.enemies.create_tickable( basic_enemy( x = emitter.x, y = emitter.y, sequence_key = sequence_key ) )
+    def create_enemy( self, **kwargs ):
+        return self.enemies.create_tickable( basic_enemy( **kwargs ) )
 
     def render( self ):
         for enemy in self.enemies.tickables:
