@@ -3,20 +3,20 @@ def rectangles_intersect(a,b):
         return True
 
 class collisions():
-        player_bullet_height = 0.01
-        enemy_size = 0.1
+
+    player_bullet_height = 0.1
+    enemy_size = 0.11
 
     def __init__(self, **kwargs):
         self.player = kwargs['player']
-        self.player_bullets = kwargs['player_bullets']
         self.enemies = kwargs['enemies']
         self.enemy_bullets = kwargs['enemy_bullets']
         
     def tick(self):
-        for player_bullet in self.player_bullets.tickables:
-            for enemy in self.enemies:
-                a = [ player_bullet.x, player_bullet.y - collisions.player_bullet_height, 
-                      player_bullet.x +player_bullet.v_x, player_bullet.y + collisions.player_bullet_height ]
+        for player_bullet in self.player.player_bullets.tickables:
+            for enemy in self.enemies.enemies.tickables:
+                a = [ player_bullet.x-player_bullet.vx, player_bullet.y - collisions.player_bullet_height, 
+                      player_bullet.x+player_bullet.vx, player_bullet.y + collisions.player_bullet_height ]
                 b = [ enemy.x - collisions.enemy_size, enemy.y - collisions.enemy_size, 
                       enemy.x + collisions.enemy_size, enemy.y + collisions.enemy_size ]
                 if( rectangles_intersect( a,b ) ):

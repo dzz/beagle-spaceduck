@@ -5,7 +5,10 @@ from .game_objects.bgfx_gravitywave import bgfx_gravitywave
 from .game_objects.starfield import starfield
 from .game_objects.enemies import enemies
 from .game_objects.enemy_bullets import enemy_bullets
+from .game_objects.collisions import collisions
+
 from .gfx_util.uniform_fade import uniform_fade
+
 
 class game(bgl.simple_tick_manager):
 
@@ -20,6 +23,7 @@ class game(bgl.simple_tick_manager):
         self.blur_effects_buffer = bgl.framebuffer.from_dims(128,128, filtered = True )
         self.bgfx_gravitywave = self.create_tickable( bgfx_gravitywave( player = self.player, distortion_buffer = self.blur_effects_buffer.get_texture()) )
         self.starfield = self.create_tickable( starfield() )
+        self.collisions = self.create_tickable( collisions( player = self.player, enemies = self.enemies, enemy_bullets = self.enemy_bullets ))
 
 
     def render(self):
