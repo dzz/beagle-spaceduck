@@ -15,8 +15,15 @@
                     { 
                         "t"         : 1.0,
                         "location"  : [ 0.0, -2.5 ],
-                        "speed"     : 0.03,
+                        "speed"     : 0.015,
                         "enemy"     : "redfish",
+                        "driver"    : "up_down"
+                    },
+                    { 
+                        "t"         : 3.0,
+                        "location"  : [ 0.0, -2.5 ],
+                        "speed"     : 0.08,
+                        "enemy"     : "blackfin",
                         "driver"    : "up_down"
                     }
                 ]

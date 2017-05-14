@@ -11,9 +11,16 @@
             },
             { 
                 "name" : "redfish",
-                "driver" : "slow_move_left",
+                "driver" : "slow_hold_center_dive",
                 "modulator" : [ "wiggle_y(spd,amt)", [ 4.1, 1.9 ] ],
                 "bullet_color" : [ 0.0, 1.0, 0.0, 1.0 ],
+                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } }
+            },
+            { 
+                "name" : "blackfin",
+                "driver" : "confuse",
+                "modulator" : [ "wiggle_y(spd,amt)", [ 4.1, 1.9 ] ],
+                "bullet_color" : [ 0.0, 0.0, 0.0, 1.0 ],
                 "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } }
             }
         ]

@@ -11,10 +11,10 @@
                                 ]
                         },
                         {
-                                "name" : "burst_1_sec",
+                                "name" : "laggy_leak",
                                 "points" : [
                                 { "t" : 0.0, "vec" : [ 0.0,0.0 ] },
-                                { "t" : 1.0, "vec" : [ 3.0,0.0 ], "smooth" : "sqr" }
+                                { "t" : 5.0, "vec" : [ 3.0,0.0 ], "smooth" : "sqr" }
                                 ]
                         }
                         ]

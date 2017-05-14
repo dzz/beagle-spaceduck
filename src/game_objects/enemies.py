@@ -30,9 +30,15 @@ class enemy(bgl.simple_tick_manager):
         bullet_pattern_params['enemy'] = self
 
         self.bullet_pattern = self.create_tickable( bullet_patterns[kwargs['bullet_pattern']['type']]( **bullet_pattern_params ) )
+        self.hp = 1
         self.tick() #prime render
         
+    def register_hit(self):
+        self.hp = self.hp - 1
+
     def tick(self):
+        if( self.hp <= 0):
+            return False
         bgl.simple_tick_manager.tick(self)
         if(self.driver.is_finished()):
             return False
