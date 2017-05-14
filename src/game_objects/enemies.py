@@ -82,16 +82,11 @@ class enemies(bgl.simple_tick_manager):
 
     def create_enemy( self, emitter, **kwargs ):
         kwargs["emitter"] = emitter
-
-        print(kwargs)
         return self.enemies.create_tickable( enemy( **kwargs ) )
 
     def load_stage(self):
         def parse_enemy_to_args(key):
             enemy_def = bgl.assets.get("enemy_defs/enemy/"+key)
-            print("----------------")
-            print(enemy_def)
-            print("----------------")
             return {
                 "enemy_bullets" : self.enemy_bullets,
                 "driver": enemy_def["driver"],

@@ -32,6 +32,76 @@
                         "speed"     : 0.01,
                         "enemy"     : "brownfish",
                         "driver"    : "lazy_up"
+                    },
+                    { 
+                        "t"         : 8.0,
+                        "location"  : [ 0.0, 2.3 ],
+                        "speed"     : 0.04,
+                        "enemy"     : "goldfish",
+                        "driver"    : "laggy_leak"
+                    },
+                    { 
+                        "t"         : 10.0,
+                        "location"  : [ 0.0, 0.5 ],
+                        "speed"     : 0.02,
+                        "enemy"     : "redfish",
+                        "driver"    : "lazy_up"
+                    },
+                    { 
+                        "t"         : 12.0,
+                        "location"  : [ 0.0, -2.5 ],
+                        "speed"     : 0.02,
+                        "enemy"     : "brownfish",
+                        "driver"    : "up_down"
+                    },
+                    { 
+                        "t"         : 15.0,
+                        "location"  : [ 0.0, 0.5 ],
+                        "speed"     : 0.01,
+                        "enemy"     : "brownfish",
+                        "driver"    : "lazy_up"
+                    },
+                    { 
+                        "t"         : 16.0,
+                        "location"  : [ 0.0, -2.5 ],
+                        "speed"     : 0.02,
+                        "enemy"     : "blackfin",
+                        "driver"    : "laggy_leak"
+                    },
+                    { 
+                        "t"         : 19.0,
+                        "location"  : [ 0.0, 2.5 ],
+                        "speed"     : 0.01,
+                        "enemy"     : "brownfish",
+                        "driver"    : "lazy_up"
+                    },
+                    { 
+                        "t"         : 24.0,
+                        "location"  : [ 0.0, 2.3 ],
+                        "speed"     : 0.01,
+                        "enemy"     : "goldfish",
+                        "driver"    : "up_down"
+                    },
+                    { 
+                        "t"         : 25.0,
+                        "location"  : [ 0.0, -2.5 ],
+                        "speed"     : 0.07,
+                        "enemy"     : "blackfin",
+                        "driver"    : "laggy_leak"
+                    },
+                    { 
+                        "t"         : 28.0,
+                        "location"  : [ 0.0, 2.5 ],
+                        "speed"     : 0.02,
+                        "enemy"     : "redfish",
+                        "driver"    : "up_down"
+                    },
+                    { 
+                        "t"         : 30.0,
+                        "location"  : [ 0.0, 1.3 ],
+                        "speed"     : 0.04,
+                        "enemy"     : "goldfish",
+                        "driver"    : "laggy_leak"
                     }
                 ]
             }

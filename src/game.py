@@ -20,7 +20,7 @@ class game(bgl.simple_tick_manager):
         self.enemies = self.create_tickable( enemies( enemy_bullets = self.enemy_bullets ) )
         self.last_frame = bgl.framebuffer.from_screen()
         self.current_frame = bgl.framebuffer.from_screen()
-        self.blur_effects_buffer = bgl.framebuffer.from_dims(128,128, filtered = True )
+        self.blur_effects_buffer = bgl.framebuffer.from_screen()
         self.bgfx_gravitywave = self.create_tickable( bgfx_gravitywave( player = self.player, distortion_buffer = self.blur_effects_buffer.get_texture()) )
         self.starfield = self.create_tickable( starfield() )
         self.collisions = self.create_tickable( collisions( player = self.player, enemies = self.enemies, enemy_bullets = self.enemy_bullets ))
@@ -36,6 +36,7 @@ class game(bgl.simple_tick_manager):
                 with bgl.blendmode.add:
                     self.starfield.render()
                     self.enemy_bullets.render()
+                    self.collisions.render()
                 with bgl.blendmode.alpha_over:
                     self.player.player_bullets.render( effects_buffer = True )
 
@@ -50,6 +51,8 @@ class game(bgl.simple_tick_manager):
                 self.enemies.render()
                 self.player.render()
                 self.enemy_bullets.render()
+                with bgl.blendmode.add:
+                    self.collisions.render()
 
         self.current_frame.render_processed( game.passthru_shader )
 

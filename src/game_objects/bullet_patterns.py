@@ -29,7 +29,6 @@ class arc():
             self.t = 0.0
             vx = sin(self.arc_t * self.speed ) * self.v
             vy = cos(self.arc_t * self.speed ) * self.v
-            
             self.enemy.enemy_bullets.create_bullet( x = self.enemy.x, y = self.enemy.y, vx = vx, vy = vy, color = self.enemy.bullet_color )
 
 
