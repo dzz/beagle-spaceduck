@@ -31,9 +31,9 @@ class game(bgl.simple_tick_manager):
                     uniform_fade.apply_fadeout(0.2)
                 with bgl.blendmode.add:
                     self.starfield.render()
+                    self.enemy_bullets.render()
                 with bgl.blendmode.alpha_over:
                     self.player.player_bullets.render( effects_buffer = True )
-                    self.enemy_bullets.render()
 
         with bgl.context.render_target( self.current_frame):
             with bgl.blendmode.alpha_over:

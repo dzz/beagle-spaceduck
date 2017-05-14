@@ -47,7 +47,7 @@ class enemy(bgl.simple_tick_manager):
         return { 
             "texBuffer"            : enemy.texture,
             "translation_local"    : [ 0, 0 ],
-            "scale_local"          : [ 0.25,0.25],
+            "scale_local"          : [ 0.5,0.5],
             "translation_world"    : [ self.x, self.y],
             "scale_world"          : [ 1, 1],
             "view"                 : enemy.view,
