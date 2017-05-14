@@ -13,18 +13,11 @@
                         "driver"    : "up_down"
                     },
                     { 
-                        "t"         : 15.0,
-                        "location"  : [ 0.0, -5.0 ],
+                        "t"         : 1.0,
+                        "location"  : [ 0.0, -2.5 ],
                         "speed"     : 0.03,
-                        "enemy"     : "goldfish_0",
-                        "driver"    : "burst_1_sec"
-                    },
-                    { 
-                        "t"         : 16.0,
-                        "location"  : [ 0.0, 5.0 ],
-                        "speed"     : 0.02,
-                        "enemy"     : "goldfish_0",
-                        "driver"    : "burst_1_sec"
+                        "enemy"     : "redfish",
+                        "driver"    : "up_down"
                     }
                 ]
             }

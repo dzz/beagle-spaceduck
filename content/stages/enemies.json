@@ -4,10 +4,17 @@
         "enemy" : [
             { 
                 "name" : "goldfish_0",
-                "driver" : "slow_move_left",
-                "modulator" : [ "wiggle_y(spd,amt)", [ 2.1, 0.9 ] ],
+                "driver" : "fast_move_left",
+                "modulator" : [ "wiggle_y(spd,amt)", [ 2.1, 0.4 ] ],
                 "bullet_color" : [ 1.0, 0.0, 0.0, 1.0 ],
-                "bullet_pattern" : { "type" : "steady_fire_left", "params" : { "idle_frames" : 23, "vx" : -0.28 } }
+                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } }
+            },
+            { 
+                "name" : "redfish",
+                "driver" : "slow_move_left",
+                "modulator" : [ "wiggle_y(spd,amt)", [ 4.1, 1.9 ] ],
+                "bullet_color" : [ 0.0, 1.0, 0.0, 1.0 ],
+                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } }
             }
         ]
     }

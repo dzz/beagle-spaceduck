@@ -30,6 +30,7 @@ class enemy(bgl.simple_tick_manager):
         bullet_pattern_params['enemy'] = self
 
         self.bullet_pattern = self.create_tickable( bullet_patterns[kwargs['bullet_pattern']['type']]( **bullet_pattern_params ) )
+        self.tick() #prime render
         
     def tick(self):
         bgl.simple_tick_manager.tick(self)
@@ -73,15 +74,19 @@ class enemies(bgl.simple_tick_manager):
     def create_emitter(self, emitter ):
         return self.emitters.create_tickable( emitter )
 
-    def create_enemy( self, **kwargs ):
+    def create_enemy( self, emitter, **kwargs ):
+        kwargs["emitter"] = emitter
+
+        print(kwargs)
         return self.enemies.create_tickable( enemy( **kwargs ) )
 
     def load_stage(self):
-        def parse_enemy_to_args(emitter, key):
+        def parse_enemy_to_args(key):
             enemy_def = bgl.assets.get("enemy_defs/enemy/"+key)
-
+            print("----------------")
+            print(enemy_def)
+            print("----------------")
             return {
-                "emitter": emitter,
                 "enemy_bullets" : self.enemy_bullets,
                 "driver": enemy_def["driver"],
                 "modulator" : enemy_def["modulator"],
@@ -91,6 +96,7 @@ class enemies(bgl.simple_tick_manager):
 
         emitter_defs = bgl.assets.get( "test_stage/emitter_script/test_script")["emitters"]
         for emitter_def in emitter_defs:
+            factory_args = parse_enemy_to_args( emitter_def["enemy"])
             self.create_emitter(
                 pulse_emitter (
                     rate = 1.0 / 60.0,
@@ -99,7 +105,8 @@ class enemies(bgl.simple_tick_manager):
                     y = emitter_def["location"][1],
                     ramp_speed = emitter_def["speed"],
                     driver = emitter_def["driver"],
-                    template = (lambda emitter: self.create_enemy(**parse_enemy_to_args( emitter, emitter_def["enemy"] )))
+                    template = factory_args,
+                    factory = self
                     )
                 )
 

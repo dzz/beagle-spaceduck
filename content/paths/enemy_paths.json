@@ -1,12 +1,23 @@
 {
         "preload" : true,
                 "resources": {
-                        "curve" : [ {
+                        "curve" : [ 
+
+                        {
                                 "name" : "slow_move_left",
                                 "points" : [
                                 { "t" : 0.0, "vec" : [ 10.0,0.0 ] },
                                 { "t" : 10.0, "vec" : [ -10.0,0.0 ] }
                                 ]
-                        } ]
+                        },
+                        {
+                                "name" : "fast_move_left",
+                                "points" : [
+                                { "t" : 0.0, "vec" : [ 10.0,0.0 ] },
+                                { "t" : 5.0, "vec" : [ -20.0,0.0 ] }
+                                ]
+                        } 
+
+                        ]
                 }
 }

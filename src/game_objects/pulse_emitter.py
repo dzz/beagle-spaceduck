@@ -13,9 +13,11 @@ class pulse_emitter():
         self.template = kwargs['template']
         self.ramp = 0.0
         self.driver = bgl.curve_driver( curve = bgl.assets.get("emitter_paths/curve/" + kwargs["driver"]), rate = pulse_emitter.driver_rate )
+        self.template = kwargs['template']
+        self.factory = kwargs['factory']
 
     def emit(self):
-        self.template(self)
+        self.factory.create_enemy( self, **self.template )
 
     def tick(self):
         self.t = self.t + self.rate

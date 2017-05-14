@@ -1,4 +1,4 @@
-class steady_fire_left():
+class steady_fire_horizontal():
     def __init__(self, **kwargs ):
         self.t = 0
         self.enemy = kwargs['enemy']
@@ -13,5 +13,5 @@ class steady_fire_left():
 
 
 bullet_patterns = {
-    "steady_fire_left" : steady_fire_left
+    "steady_fire_horizontal" : steady_fire_horizontal
 }
