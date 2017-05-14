@@ -2,27 +2,37 @@ from math import sin
 from client.beagle.beagle_api import api as bgl
 from .pulse_emitter import pulse_emitter
 from .motion_modulators import motion_modulators
+from .bullet_patterns import bullet_patterns
 
-class enemy():
+class enemy(bgl.simple_tick_manager):
     view = bgl.assets.get("beagle-2d/coordsys/16:9")
     texture = bgl.assets.get("bullets/texture/basic_bullet")
     driver_rate = 1.0 / 60.0
 
     def __init__(self, **kwargs):
+
+        bgl.simple_tick_manager.__init__(self) 
+        self.enemy_bullets = kwargs['enemy_bullets']
         self.x = self.base_x = kwargs['emitter'].x
         self.y = self.base_y = kwargs['emitter'].y
-        self.driver = bgl.curve_driver( curve = bgl.assets.get("enemy_paths/curve/" + kwargs["driver"] ),
-                                          rate = enemy.driver_rate )
+        self.driver = self.create_tickable( bgl.curve_driver( curve = bgl.assets.get("enemy_paths/curve/" + kwargs["driver"] ),
+                                          rate = enemy.driver_rate ))
 
 
         modulator_def = kwargs['modulator']
+        self.bullet_color = kwargs['bullet_color']
         self.modulator_args = [self]
         self.modulator_args.extend(modulator_def[1])
 
         self.modulator = motion_modulators[modulator_def[0]]
 
+        bullet_pattern_params = kwargs['bullet_pattern']['params']
+        bullet_pattern_params['enemy'] = self
+
+        self.bullet_pattern = self.create_tickable( bullet_patterns[kwargs['bullet_pattern']['type']]( **bullet_pattern_params ) )
+        
     def tick(self):
-        self.driver.tick()
+        bgl.simple_tick_manager.tick(self)
         if(self.driver.is_finished()):
             return False
 
@@ -31,7 +41,6 @@ class enemy():
         self.y = self.base_y + p[1]
 
         self.modulator(*self.modulator_args)
-
         return True
 
     def get_shader_params(self ):
@@ -52,23 +61,15 @@ class enemies(bgl.simple_tick_manager):
     primitive = bgl.primitive.unit_uv_square 
     shader = bgl.assets.get("beagle-2d/shader/beagle-2d")
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         bgl.purging_tick_manager.__init__(self)
       
         self.enemies = self.create_tickable( bgl.purging_tick_manager() )
         self.emitters = self.create_tickable( bgl.purging_tick_manager() )
+        self.enemy_bullets = kwargs['enemy_bullets']
 
         self.load_stage()
-        #self.create_emitter ( pulse_emitter( x = 0, y = 0, 
-        #                              rate = 1.0/60.0, 
-        #                              start = 0.0,
-        #                              ramp_speed = 0.01, 
-        #                              driver = "up_down",
-        #                              template = (lambda emitter : self.create_enemy(
-        #                                                                emitter = emitter, 
-        #                                                                driver = "slow_move_left",
-        #                                                                modulator = ( "wiggle_y(spd,amt)",[ 2.1, 0.9 ] )
-                                                                    #) ) ))
+
     def create_emitter(self, emitter ):
         return self.emitters.create_tickable( emitter )
 
@@ -78,10 +79,14 @@ class enemies(bgl.simple_tick_manager):
     def load_stage(self):
         def parse_enemy_to_args(emitter, key):
             enemy_def = bgl.assets.get("enemy_defs/enemy/"+key)
+
             return {
                 "emitter": emitter,
+                "enemy_bullets" : self.enemy_bullets,
                 "driver": enemy_def["driver"],
                 "modulator" : enemy_def["modulator"],
+                "bullet_pattern" : enemy_def["bullet_pattern"],
+                "bullet_color" : enemy_def["bullet_color"]
             } 
 
         emitter_defs = bgl.assets.get( "test_stage/emitter_script/test_script")["emitters"]

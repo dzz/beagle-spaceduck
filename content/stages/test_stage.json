@@ -8,21 +8,21 @@
                     { 
                         "t"         : 0.0,
                         "location"  : [ 0.0, 0.0 ],
-                        "speed"     : 0.1,
+                        "speed"     : 0.01,
                         "enemy"     : "goldfish_0",
                         "driver"    : "up_down"
                     },
                     { 
                         "t"         : 15.0,
                         "location"  : [ 0.0, -5.0 ],
-                        "speed"     : 0.1,
+                        "speed"     : 0.03,
                         "enemy"     : "goldfish_0",
                         "driver"    : "burst_1_sec"
                     },
                     { 
                         "t"         : 16.0,
                         "location"  : [ 0.0, 5.0 ],
-                        "speed"     : 0.1,
+                        "speed"     : 0.02,
                         "enemy"     : "goldfish_0",
                         "driver"    : "burst_1_sec"
                     }

@@ -1,5 +1,4 @@
 from math import sin
-from functools import partial
 
 def passthru(self):
     pass
