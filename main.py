@@ -1,3 +1,4 @@
+import beagle_runtime
 from .src import game_instance as game
 
 def init():

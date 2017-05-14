@@ -1,0 +1,12 @@
+{
+    "preload" : true,
+    "resources" : {
+        "enemy" : [
+            { 
+                "name" : "goldfish_0",
+                "driver" : "slow_move_left",
+                "modulator" : [ "wiggle_y(spd,amt)", [ 2.1, 0.9 ] ]
+            }
+        ]
+    }
+}

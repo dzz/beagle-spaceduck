@@ -2,7 +2,7 @@ from client.beagle.beagle_api import api as bgl
 
 class pulse_emitter():
     driver_rate = 1.0 / 60.0
-
+    
     def __init__(self, **kwargs):
         self.t = 0
         self.x = self.base_x = kwargs['x']
@@ -18,8 +18,6 @@ class pulse_emitter():
         self.template(self)
 
     def tick(self):
-        self.driver.tick()
-
         self.t = self.t + self.rate
 
         if(self.driver.is_finished()):

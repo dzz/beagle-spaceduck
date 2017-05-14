@@ -1,0 +1,33 @@
+{
+    "preload" : true,
+    "resources" : {
+        "emitter_script" : [
+            { 
+                "name" : "test_script",
+                "emitters" : [
+                    { 
+                        "t"         : 0.0,
+                        "location"  : [ 0.0, 0.0 ],
+                        "speed"     : 0.1,
+                        "enemy"     : "goldfish_0",
+                        "driver"    : "up_down"
+                    },
+                    { 
+                        "t"         : 15.0,
+                        "location"  : [ 0.0, -5.0 ],
+                        "speed"     : 0.1,
+                        "enemy"     : "goldfish_0",
+                        "driver"    : "burst_1_sec"
+                    },
+                    { 
+                        "t"         : 16.0,
+                        "location"  : [ 0.0, 5.0 ],
+                        "speed"     : 0.1,
+                        "enemy"     : "goldfish_0",
+                        "driver"    : "burst_1_sec"
+                    }
+                ]
+            }
+        ]
+    }
+}
