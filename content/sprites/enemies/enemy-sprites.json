@@ -1,0 +1,13 @@
+{
+        "preload" : true,
+                "resources" : {
+                        "texture" : [
+                        { "name" : "woof_dawg", "filename" : "/content/sprites/enemies/medium/woof_dawg.png", "filtered" : false },
+                        { "name" : "spear_fish", "filename" : "/content/sprites/enemies/medium/spear_fish.png", "filtered" : false },
+                        { "name" : "processed_whale", "filename" : "/content/sprites/enemies/medium/processed_whale.png", "filtered" : false },
+                        { "name" : "fish_taco", "filename" : "/content/sprites/enemies/medium/fish_taco.png", "filtered" : false },
+                        { "name" : "core_processor", "filename" : "/content/sprites/enemies/large/core_processor.png", "filtered" : false },
+                        { "name" : "baby_precious", "filename" : "/content/sprites/enemies/large/baby_precious.png", "filtered" : false }
+                        ]
+                }
+}

@@ -65,7 +65,7 @@ class collisions(bgl.purging_tick_manager):
                       enemy.x + collisions.enemy_size, enemy.y + collisions.enemy_size ]
                 if( rectangles_intersect( a,b ) ):
                     enemy.register_hit()
-                    for x in range( 0, 12 ):
+                    for x in range( 0, 4 ):
                         self.create_tickable(spark( enemy.x, enemy.y))
                         
 

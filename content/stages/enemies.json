@@ -5,30 +5,62 @@
             { 
                 "name" : "goldfish",
                 "driver" : "fast_move_left",
+                "sprite" : "woof_dawg",
                 "modulator" : [ "wiggle_y(spd,amt)", [ 2.1, 0.4 ] ],
                 "bullet_color" : [ 1.0, 0.0, 0.0, 1.0 ],
-                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } }
+                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } },
+                "hp" : 3,
+                "size" : 0.8
             },
             { 
                 "name" : "redfish",
+                "sprite" : "spear_fish",
                 "driver" : "slow_hold_center_dive",
                 "modulator" : [ "wiggle_y(spd,amt)", [ 4.1, 1.9 ] ],
                 "bullet_color" : [ 0.0, 1.0, 0.0, 1.0 ],
-                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } }
+                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.28 } },
+                "hp" : 3,
+                "size" : 0.9
             },
             { 
                 "name" : "blackfin",
+                "sprite" : "processed_whale",
                 "driver" : "confuse",
                 "modulator" : [ "wiggle_y(spd,amt)", [ 0.3, 3.7 ] ],
                 "bullet_color" : [ 0.5, 0.2, 0.8, 1.0 ],
-                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.18 } }
+                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 23, "vx" : -0.18 } },
+                "hp" : 4,
+                "size" : 0.8
             },
             { 
                 "name" : "brownfish",
+                "sprite" : "fish_taco",
                 "driver" : "slow_hold_center_dive",
                 "modulator" : [ "passthru", [] ],
                 "bullet_color" : [ 1.0, 0.6, 0.2, 1.0 ],
-                "bullet_pattern" : { "type" : "arc", "params" : { "idle_frames" : 12 , "speed" : 0.08, "v" : 0.1 } }
+                "bullet_pattern" : { "type" : "arc", "params" : { "idle_frames" : 12 , "speed" : 0.08, "v" : 0.1 } },
+                "hp" : 6,
+                "size" : 0.7
+            },
+            { 
+                "name" : "cpu_hog",
+                "sprite" : "core_processor",
+                "driver" : "slow_intimidation",
+                "modulator" : [ "wiggle_y(spd,amt)", [ 0.1, 1.1 ] ],
+                "bullet_color" : [ 1.0, 1.0, 1.0, 1.0 ],
+                "bullet_pattern" : { "type" : "arc", "params" : { "idle_frames" : 11 , "speed" : 0.09, "v" : 0.07 } },
+                "hp" : 12,
+                "size" : 1.5
+            },
+            { 
+                "name" : "parental_nightmare",
+                "sprite" : "baby_precious",
+                "driver" : "slow_confuse",
+                "modulator" : [ "wiggle_y(spd,amt)", [ 0.3, 0.2 ] ],
+                "bullet_color" : [ 1.0, 0.5, 1.0, 1.0 ],
+                "bullet_pattern" : { "type" : "steady_fire_horizontal", "params" : { "idle_frames" : 8 , "speed" : 0.09, "vx" : 0.15 } },
+                "hp" : 13,
+                "size" : 1.5
             }
         ]
     }

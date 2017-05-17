@@ -56,7 +56,7 @@ class starfield(bgl.purging_tick_manager):
     def tick(self):
         bgl.purging_tick_manager.tick(self)
         if( uniform(0.0,1.0) > 0.2 ):
-            self.create_tickable( star( s = uniform(0.01,0.3), x = 20, vx = uniform(0.1,0.5), y = uniform( -5, 5) ) )
+            self.create_tickable( star( s = uniform(0.01,0.3), x = 20, vx = uniform(0.1,0.3), y = uniform( -5, 5) ) )
 
     def render(self):
         grouped = groupby( self.tickables, lambda x : x.texture )
