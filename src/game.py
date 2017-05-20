@@ -10,7 +10,7 @@ from .game_objects.collisions import collisions
 from .gfx_util.uniform_fade import uniform_fade
 
 
-class game(bgl.simple_tick_manager):
+class game(bgl.simple_tick_manager, bgl.basic_web_app):
 
     passthru_shader = bgl.assets.get("beagle-2d/shader/passthru")
 
