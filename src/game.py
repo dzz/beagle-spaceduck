@@ -27,6 +27,7 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
 
 
     def render(self):
+        return
         with bgl.context.render_target( self.last_frame):
             self.current_frame.render_processed( game.passthru_shader )
 
