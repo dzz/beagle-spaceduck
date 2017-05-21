@@ -1,0 +1,7 @@
+.curveEditorCanvas {
+    float:left;
+}
+.curveEditorRightPanel {
+    float:left;
+    margin-left: 10px;
+}
