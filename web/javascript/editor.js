@@ -10,7 +10,9 @@ function remote_python( code, callback ) {
 }
 
 function editor_init() {
-    $("#run_test").click( ()=>{
-        remote_python( "self.get_version_info()", (data)=>{ console.log(data); });
-    })
+    //$("#run_test").click( ()=>{
+    //    remote_python( "self.get_version_info()", (data)=>{ console.log(data); });
+    //})
+
+    $.get("/frontend/html/curve_editor.html", (data) => { $("#activeEditor").html(data) } );
 }
