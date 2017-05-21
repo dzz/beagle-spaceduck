@@ -32,7 +32,13 @@ var CurveEditor = {
         setTime: function( timeSec ) {
             this.t = timeSec;
             this.drawTimeline();
-            this.drawGrid();
+
+            var editor = this;
+            remote_call_child( "eval_curve", { "t": this.t, "points" : this.points }, (data)=>{
+                editor.glyphPosition.x = data.value[0];
+                editor.glyphPosition.y = data.value[1];
+                editor.drawGrid();
+            });
         },
 
         drawGrid: function() {
@@ -98,6 +104,14 @@ var CurveEditor = {
                             0 + this.margin_ratio*this.height,
                             innerWidth,
                             innerHeight );
+
+
+
+            var realGlyphX = (this.glyphPosition.x / ( this.view[0] - this.view[0]*this.margin_ratio ) * this.curve_canvas.width ) + (this.curve_canvas.width / 2.0 );
+            var realGlyphY = (this.glyphPosition.y / ( this.view[1] - this.view[1]*this.margin_ratio ) * this.curve_canvas.height) + (this.curve_canvas.height / 2.0 );
+
+            ctx.fillStyle = "#FF00FF";
+            ctx.fillRect( realGlyphX - 8, realGlyphY - 8, 16, 16 );
 
             ctx.restore();
         
@@ -188,6 +202,8 @@ var CurveEditor = {
             this.keyframe_width = 5;
             this.t = 0.0;
             this.points = [];
+
+            this.glyphPosition = { "x" : 0.0, "y" : 0.0 };
 
             this.setPoints([{"t":0.0,"vec":[ 5.0,0.0]},{"t":10.0,"vec":[-5.0,0.0]}]);
             this.drawGrid();

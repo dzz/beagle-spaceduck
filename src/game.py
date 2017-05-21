@@ -8,13 +8,14 @@ from .game_objects.enemy_bullets import enemy_bullets
 from .game_objects.collisions import collisions
 
 from .gfx_util.uniform_fade import uniform_fade
-
+from .editor import editor
 
 class game(bgl.simple_tick_manager, bgl.basic_web_app):
 
     passthru_shader = bgl.assets.get("beagle-2d/shader/passthru")
 
     def init(self):
+        self.editor = editor
         self.player = self.create_tickable( player() )
         self.enemy_bullets = self.create_tickable( enemy_bullets() )
         self.enemies = self.create_tickable( enemies( enemy_bullets = self.enemy_bullets ) )
@@ -27,7 +28,6 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
 
 
     def render(self):
-        return
         with bgl.context.render_target( self.last_frame):
             self.current_frame.render_processed( game.passthru_shader )
 
