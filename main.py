@@ -18,8 +18,3 @@ def finalize():
 def configure( application_ini ):
     game.configure( application_ini )
 
-def http_serve_index():
-    return "<H1>YO BUBZ</H1>"
-
-def http_route_json(json):
-    return json
