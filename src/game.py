@@ -61,3 +61,9 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
 
     def configure(self, application_ini):
         pass
+
+    def get_version_info(self):
+        return {
+            "application" : "SPACE DUCK SUPREME",
+            "version" : "1.0"
+        }
