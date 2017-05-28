@@ -4,6 +4,7 @@ from .hud import hud
 
 class player(bgl.simple_tick_manager):
     def __init__(self, **kwargs):
+        self.health = 30
         bgl.simple_tick_manager.__init__(self)
         self.primitive = bgl.primitive.unit_uv_square
         self.shader = bgl.assets.get("beagle-2d/shader/beagle-2d")
@@ -51,9 +52,11 @@ class player(bgl.simple_tick_manager):
             self.y =4
 
        
-    def register_hit(self):
+    def register_hit(self, explosions):
         self.injury_impulse = self.injury_impulse + 1.0
         self.total_injury = self.total_injury + 1.0
+        if(self.health>0.0):
+            self.health -= 0.5
 
     def get_shader_params(self):
 
@@ -76,4 +79,5 @@ class player(bgl.simple_tick_manager):
             "uv_translate"         : [ 0,0 ] }
 
     def render(self):
-        self.primitive.render_shaded( self.shader, self.get_shader_params() )
+        if(self.health>0.0):
+            self.primitive.render_shaded( self.shader, self.get_shader_params() )

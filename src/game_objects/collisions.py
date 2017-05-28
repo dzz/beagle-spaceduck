@@ -1,6 +1,7 @@
 from random import uniform, choice
 from client.beagle.beagle_api import api as bgl
 from .hitbox_effect import hitbox_effect
+from .explosions import explosions
 
 def rectangles_intersect(a,b):
     if a[0] < b[2] and a[2] > b[0] and a[1] < b[3] and a[3] > b[1]:
@@ -57,6 +58,7 @@ class collisions(bgl.purging_tick_manager):
         self.enemy_bullets = kwargs['enemy_bullets']
         self.sparks = []
         self.hitbox_effect = self.create_tickable( hitbox_effect() )
+        self.explosions = self.create_tickable( explosions() )
         
     def tick(self):
         bgl.purging_tick_manager.tick(self)
@@ -73,9 +75,8 @@ class collisions(bgl.purging_tick_manager):
                 b = [ enemy.x - enemy_size, enemy.y - enemy_size, 
                       enemy.x + enemy_size, enemy.y + enemy_size ]
                 if( rectangles_intersect( a,b ) ):
-                    enemy.register_hit()
-                    self.hitbox_effect.add_hitbox(a)
-                    self.hitbox_effect.add_hitbox(b)
+                    enemy.register_hit(self.explosions)
+                    self.hitbox_effect.add_hitboxes([a,b])
                     for x in range( 0, 4 ):
                         self.sparks.append(spark( enemy.x, enemy.y))
         for enemy_bullet in self.enemy_bullets.tickables:
@@ -86,9 +87,8 @@ class collisions(bgl.purging_tick_manager):
                 b = [ enemy_bullet.x - bullet_size, enemy_bullet.y - bullet_size, 
                       enemy_bullet.x + bullet_size, enemy_bullet.y + bullet_size ]
                 if( rectangles_intersect( a,b ) ):
-                    self.player.register_hit()
-                    self.hitbox_effect.add_hitbox(a)
-                    self.hitbox_effect.add_hitbox(b)
+                    self.player.register_hit(self.explosions)
+                    self.hitbox_effect.add_hitboxes([a,b])
                     self.enemy_bullets.tickables.remove(enemy_bullet)
                         
 
@@ -96,5 +96,6 @@ class collisions(bgl.purging_tick_manager):
         for renderable in self.sparks:
             spark.primitive.render_shaded( spark.shader, renderable.get_shader_params() ) 
         self.hitbox_effect.render()
+        self.explosions.render()
 
 

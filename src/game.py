@@ -54,6 +54,7 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
                     #self.collisions.render()
                     self.enemy_bullets.render()
                 self.player.player_bullets.render( effects_buffer = False )
+                self.player.hud.render()
 
         self.current_frame.render_processed( game.passthru_shader )
 

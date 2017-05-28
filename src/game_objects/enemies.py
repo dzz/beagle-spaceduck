@@ -36,9 +36,11 @@ class enemy(bgl.simple_tick_manager):
         self.rot = 0.0
         self.tick() #prime render
         
-    def register_hit(self):
+    def register_hit(self, explosions):
         self.hp = self.hp - 1
         self.rot += 0.1
+        if(self.hp <= 0.0):
+            explosions.add_explosion( self )
 
     def tick(self):
         self.rot *=0.9

@@ -1,4 +1,5 @@
 from client.beagle.beagle_api import api as bgl
+from random import choice
 
 class hitbox_effect(bgl.basic_sprite_renderer):
     shader = bgl.assets.get("beagle-2d/shader/beagle-2d")
@@ -7,15 +8,14 @@ class hitbox_effect(bgl.basic_sprite_renderer):
         self.texture = bgl.texture.from_data(1,1,[1.0,1.0,1.0,1.0])
         self.state = True
         
-    def add_hitbox(self, hitbox):
-        self.hitboxes.append(hitbox)
+    def add_hitboxes(self, hitboxes):
+        self.hitboxes.extend(hitboxes)
+        self.state = not self.state
 
     def tick(self):
         pass
 
     def get_params(self,hitbox):
-        scale_x = (hitbox[2] - hitbox[0] / 2.0)
-        scale_y = (hitbox[3] - hitbox[1] / 2.0)
 
         center_x = hitbox[0]
         center_y = hitbox[1]
@@ -26,9 +26,9 @@ class hitbox_effect(bgl.basic_sprite_renderer):
         view = bgl.assets.get("beagle-2d/coordsys/16:9")
 
         if self.state:
-            color = [1.0]*4
+            color = [1.0,1.0,1.0,1.0]
         else:
-            color = [1.0,1.0,0.0,1.0]
+            color = choice( [[1.0,1.0,0.0,1.0], [0.0,1.0,1.0,1.0], [1.0,0.0,1.0,1.0]])
 
         return { 
             "texBuffer"            : self.texture,
@@ -45,5 +45,5 @@ class hitbox_effect(bgl.basic_sprite_renderer):
     def render(self):
         for h in self.hitboxes:
             bgl.primitive.unit_uv_square.render_shaded(hitbox_effect.shader, self.get_params(h))
+            self.state = not self.state
         self.hitboxes = []
-        self.state = not self.state
