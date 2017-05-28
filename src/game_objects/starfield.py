@@ -27,7 +27,7 @@ class star():
         self.vx = kwargs['vx']
         self.s = kwargs['s']
 
-        self.s *= 0.5 + (1-self.vx)
+        self.s *= 0.1 + (1-self.vx)
 
         self.c = list(map( lambda x : x * self.s, choice( star.colors) ))
         self.texture = choice( star.textures )

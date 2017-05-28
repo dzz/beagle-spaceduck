@@ -1,5 +1,6 @@
 from random import uniform, choice
 from client.beagle.beagle_api import api as bgl
+from .hitbox_effect import hitbox_effect
 
 def rectangles_intersect(a,b):
     if a[0] < b[2] and a[2] > b[0] and a[1] < b[3] and a[3] > b[1]:
@@ -55,11 +56,14 @@ class collisions(bgl.purging_tick_manager):
         self.enemies = kwargs['enemies']
         self.enemy_bullets = kwargs['enemy_bullets']
         self.sparks = []
+        self.hitbox_effect = self.create_tickable( hitbox_effect() )
         
     def tick(self):
         bgl.purging_tick_manager.tick(self)
         for s in self.sparks:
-            s.tick()
+            if not s.tick(): 
+                self.sparks.remove(s)
+
         self.sparks = self.sparks[-64:]
         for player_bullet in self.player.player_bullets.tickables:
             for enemy in self.enemies.enemies.tickables:
@@ -70,6 +74,8 @@ class collisions(bgl.purging_tick_manager):
                       enemy.x + enemy_size, enemy.y + enemy_size ]
                 if( rectangles_intersect( a,b ) ):
                     enemy.register_hit()
+                    self.hitbox_effect.add_hitbox(a)
+                    self.hitbox_effect.add_hitbox(b)
                     for x in range( 0, 4 ):
                         self.sparks.append(spark( enemy.x, enemy.y))
                         
@@ -77,5 +83,6 @@ class collisions(bgl.purging_tick_manager):
     def render(self):
         for renderable in self.sparks:
             spark.primitive.render_shaded( spark.shader, renderable.get_shader_params() ) 
+        self.hitbox_effect.render()
 
 
