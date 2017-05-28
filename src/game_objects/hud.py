@@ -24,8 +24,9 @@ class hud():
              
         with bgl.context.render_target( self.framebuffer ):
             bgl.context.clear(0.0,0.0,0.0,0.0)
-            bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 0,0, self.filtered_color )
-            bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 3,3, [0.0,0.0,0.0] )
+            with bgl.blendmode.alpha_over:
+                bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 0,0, self.filtered_color )
+                bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 1,1, [0.0,0.0,0.0] )
 
     def render(self):
         print("HI")

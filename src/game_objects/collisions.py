@@ -74,6 +74,7 @@ class collisions(bgl.purging_tick_manager):
                       player_bullet.x+player_bullet.vx, player_bullet.y + collisions.player_bullet_height ]
                 b = [ enemy.x - enemy_size, enemy.y - enemy_size, 
                       enemy.x + enemy_size, enemy.y + enemy_size ]
+
                 if( rectangles_intersect( a,b ) ):
                     enemy.register_hit(self.explosions)
                     self.hitbox_effect.add_hitboxes([a,b])

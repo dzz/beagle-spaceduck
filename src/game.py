@@ -13,6 +13,7 @@ from .editor import editor
 class game(bgl.simple_tick_manager, bgl.basic_web_app):
 
     passthru_shader = bgl.assets.get("beagle-2d/shader/passthru")
+    postfx_shader = bgl.assets.get("filters/shader/postfx_filter")
 
     def init(self):
         self.editor = editor
@@ -56,7 +57,7 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
                 self.player.player_bullets.render( effects_buffer = False )
                 self.player.hud.render()
 
-        self.current_frame.render_processed( game.passthru_shader )
+        self.current_frame.render_processed( game.postfx_shader, { "excitement" : [ self.collisions.explosions.explosion_impulse ], "pain" : [self.player.injury_impulse ]} )
 
     def finalize(self):
         pass

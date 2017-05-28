@@ -33,6 +33,7 @@ class explosions(bgl.basic_sprite_renderer):
     def add_explosion(self, dead_item):
         dead_item.explosion_life = 1.0
         self.dead_items.append( dead_item )
+        self.explosion_impulse = 1.0
 
     def render(self):
         for renderable in self.dead_items:
@@ -51,13 +52,16 @@ class explosions(bgl.basic_sprite_renderer):
             explosions.textures.append( explosions.generate_texture() )
 
     def tick(self):
+        self.explosion_impulse = self.explosion_impulse * 0.95
         for dead_item in self.dead_items:
             dead_item.explosion_life = dead_item.explosion_life *0.7
+            dead_item.tick()
             if dead_item.explosion_life < 0.1:
                 self.dead_items.remove(dead_item)
         return True
 
     def __init__(self):
+        self.explosion_impulse = 1.0
         self.dead_items = []
         if not explosions.textures:
             explosions.generate_textures()

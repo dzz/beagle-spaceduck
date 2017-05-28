@@ -12,6 +12,7 @@
         "enemy-sprites" : "content/sprites/enemies/enemy-sprites.json",
 
         "beagle-2d" : "shaders/beagle-2d/beagle-2d.json",
-        "bgfx-shaders" : "content/shader_libs/bgfx.json"
+        "bgfx-shaders" : "content/shader_libs/bgfx.json",
+        "filters" : "content/shader_libs/filters.json"
     }
 }
