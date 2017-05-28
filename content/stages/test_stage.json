@@ -34,13 +34,6 @@
                         "driver"    : "lazy_up"
                     },
                     { 
-                        "t"         : 8.0,
-                        "location"  : [ 0.0, 2.3 ],
-                        "speed"     : 0.04,
-                        "enemy"     : "goldfish",
-                        "driver"    : "laggy_leak"
-                    },
-                    { 
                         "t"         : 10.0,
                         "location"  : [ 0.0, 0.5 ],
                         "speed"     : 0.02,
@@ -69,13 +62,6 @@
                         "driver"    : "laggy_leak"
                     },
                     { 
-                        "t"         : 19.0,
-                        "location"  : [ 0.0, 2.5 ],
-                        "speed"     : 0.01,
-                        "enemy"     : "brownfish",
-                        "driver"    : "lazy_up"
-                    },
-                    { 
                         "t"         : 24.0,
                         "location"  : [ 0.0, 2.3 ],
                         "speed"     : 0.01,
@@ -84,8 +70,15 @@
                     },
                     { 
                         "t"         : 25.0,
+                        "location"  : [ 0.0, 2.3 ],
+                        "speed"     : 0.04,
+                        "enemy"     : "goldfish",
+                        "driver"    : "laggy_leak"
+                    },
+                    { 
+                        "t"         : 25.0,
                         "location"  : [ 0.0, -2.5 ],
-                        "speed"     : 0.07,
+                        "speed"     : 0.03,
                         "enemy"     : "blackfin",
                         "driver"    : "laggy_leak"
                     },
@@ -106,9 +99,16 @@
                     { 
                         "t"         : 30.0,
                         "location"  : [ 0.0, 1.3 ],
-                        "speed"     : 0.04,
+                        "speed"     : 0.025,
                         "enemy"     : "goldfish",
                         "driver"    : "laggy_leak"
+                    },
+                    { 
+                        "t"         : 31.0,
+                        "location"  : [ 0.0, 2.5 ],
+                        "speed"     : 0.01,
+                        "enemy"     : "brownfish",
+                        "driver"    : "lazy_up"
                     },
                     { 
                         "t"         : 32.0,

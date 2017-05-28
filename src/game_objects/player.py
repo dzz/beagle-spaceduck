@@ -41,6 +41,9 @@ class player(bgl.simple_tick_manager):
             self.y =4
 
        
+    def register_hit(self):
+        pass
+
     def get_shader_params(self):
 
         if self.firing:

@@ -35,11 +35,11 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
                 with bgl.blendmode.alpha_over:
                     uniform_fade.apply_fadeout(0.2)
                 with bgl.blendmode.add:
-                    self.starfield.render()
+                    #self.starfield.render()
                     self.collisions.render()
                 with bgl.blendmode.alpha_over:
                     self.player.player_bullets.render( effects_buffer = True )
-                    self.enemy_bullets.render()
+                    self.enemy_bullets.render( effects_buffer = True )
 
         with bgl.context.render_target( self.current_frame):
             with bgl.blendmode.alpha_over:
@@ -51,9 +51,9 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
                 self.enemies.render()
                 self.player.render()
                 with bgl.blendmode.add:
-                    self.collisions.render()
+                    #self.collisions.render()
+                    self.enemy_bullets.render()
                 self.player.player_bullets.render( effects_buffer = False )
-                self.enemy_bullets.render()
 
         self.current_frame.render_processed( game.passthru_shader )
 

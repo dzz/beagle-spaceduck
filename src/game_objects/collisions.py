@@ -78,6 +78,18 @@ class collisions(bgl.purging_tick_manager):
                     self.hitbox_effect.add_hitbox(b)
                     for x in range( 0, 4 ):
                         self.sparks.append(spark( enemy.x, enemy.y))
+        for enemy_bullet in self.enemy_bullets.tickables:
+                bullet_size = 0.04
+                player_size = 0.23
+                a = [ self.player.x - player_size, self.player.y - player_size,
+                      self.player.x + player_size, self.player.y + player_size ]
+                b = [ enemy_bullet.x - bullet_size, enemy_bullet.y - bullet_size, 
+                      enemy_bullet.x + bullet_size, enemy_bullet.y + bullet_size ]
+                if( rectangles_intersect( a,b ) ):
+                    self.player.register_hit()
+                    self.hitbox_effect.add_hitbox(a)
+                    self.hitbox_effect.add_hitbox(b)
+                    self.enemy_bullets.tickables.remove(enemy_bullet)
                         
 
     def render(self):

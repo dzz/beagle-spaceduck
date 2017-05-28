@@ -47,7 +47,7 @@ class enemy_bullets(bgl.purging_tick_manager):
         def create_bullet(self, **kwargs):
             self.create_tickable(enemy_bullet(**kwargs))
 
-        def render(self):
+        def render(self, effects_buffer = False ):
             for bullet in self.tickables:
                 self.bullet_primitive.render_shaded(self.shader, bullet.get_shader_params() )
         
