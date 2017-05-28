@@ -5,6 +5,21 @@ var CurveEditor = {
     },
 
     ui_events: {
+        "curve_canvas" : { 
+            "dblclick" : function(e) {
+                coords = canvas_cursor_pos( this.curve_canvas, e );
+                var glyphX = (coords.x / ( this.timeline_canvas.width - (this.timeline_canvas.width*this.margin_ratio*2))) + this.margin_ratio;
+                var glyphY = (coords.y / ( this.timeline_canvas.height - (this.timeline_canvas.height*this.margin_ratio*2))) + this.margin_ratio;
+
+                this.points.push({
+                    "t" : this.t,
+                    "vec" : [ glyphX, glyphY ]
+                });
+
+                this.points = _.sortBy( this.points, (pt) =>{ return pt.t } );
+                },
+        },
+
         "timeline_canvas" : {
             "mousedown" : function(e) {
                 coords = canvas_cursor_pos( this.timeline_canvas, e );
@@ -33,11 +48,17 @@ var CurveEditor = {
             this.t = timeSec;
             this.drawTimeline();
 
+            this._timeline_synch += 1;
+            var sequence = this._timeline_synch;
             var editor = this;
             remote_call_child( "eval_curve", { "t": this.t, "points" : this.points }, (data)=>{
-                editor.glyphPosition.x = data.value[0];
-                editor.glyphPosition.y = data.value[1];
-                editor.drawGrid();
+                if( _.isArray( data.value ) ) {
+                    if( editor._timeline_synch == sequence ) {
+                        editor.glyphPosition.x = data.value[0];
+                        editor.glyphPosition.y = data.value[1];
+                        editor.drawGrid();
+                    }
+                }
             });
         },
 
@@ -203,6 +224,7 @@ var CurveEditor = {
             this.t = 0.0;
             this.points = [];
 
+            this._timeline_synch = 0; // used to line up network events
             this.glyphPosition = { "x" : 0.0, "y" : 0.0 };
 
             this.setPoints([{"t":0.0,"vec":[ 5.0,0.0]},{"t":10.0,"vec":[-5.0,0.0]}]);

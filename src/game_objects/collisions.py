@@ -47,30 +47,35 @@ class spark():
 class collisions(bgl.purging_tick_manager):
 
     player_bullet_height = 0.1
-    enemy_size = 0.11
+    base_enemy_size = 0.31
 
     def __init__(self, **kwargs):
         bgl.purging_tick_manager.__init__(self)
         self.player = kwargs['player']
         self.enemies = kwargs['enemies']
         self.enemy_bullets = kwargs['enemy_bullets']
+        self.sparks = []
         
     def tick(self):
         bgl.purging_tick_manager.tick(self)
+        for s in self.sparks:
+            s.tick()
+        self.sparks = self.sparks[-64:]
         for player_bullet in self.player.player_bullets.tickables:
             for enemy in self.enemies.enemies.tickables:
+                enemy_size = collisions.base_enemy_size * enemy.size
                 a = [ player_bullet.x-player_bullet.vx, player_bullet.y - collisions.player_bullet_height, 
                       player_bullet.x+player_bullet.vx, player_bullet.y + collisions.player_bullet_height ]
-                b = [ enemy.x - collisions.enemy_size, enemy.y - collisions.enemy_size, 
-                      enemy.x + collisions.enemy_size, enemy.y + collisions.enemy_size ]
+                b = [ enemy.x - enemy_size, enemy.y - enemy_size, 
+                      enemy.x + enemy_size, enemy.y + enemy_size ]
                 if( rectangles_intersect( a,b ) ):
                     enemy.register_hit()
                     for x in range( 0, 4 ):
-                        self.create_tickable(spark( enemy.x, enemy.y))
+                        self.sparks.append(spark( enemy.x, enemy.y))
                         
 
     def render(self):
-        for renderable in self.tickables:
+        for renderable in self.sparks:
             spark.primitive.render_shaded( spark.shader, renderable.get_shader_params() ) 
 
 
