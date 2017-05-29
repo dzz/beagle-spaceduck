@@ -18,12 +18,19 @@ class player(bgl.simple_tick_manager):
         self.total_injury = 0.0
         self.x = 0.0
         self.y = 0.0
-
         self.firing = False
         self.flapping = False
+        self.money = 0
+        self.display_money = 0
+
+    def add_kill(self, enemy):
+        self.money = self.money + int(100*enemy.size*enemy.base_hp)
 
     def tick(self):
-        self.injury_impulse = self.injury_impulse * 0.5
+        if self.display_money < self.money:
+            self.display_money = self.display_money + 1
+
+        self.injury_impulse = self.injury_impulse * 0.8
         self.gamepad = bgl.gamepads.find_primary()
         bgl.simple_tick_manager.tick(self)
         diff_x = self.x + self.gamepad.left_stick[0]*0.9;
@@ -59,7 +66,6 @@ class player(bgl.simple_tick_manager):
             self.health -= 0.5
 
     def get_shader_params(self):
-
         if self.firing:
             sequencer = self.firing_sequencer
         elif self.flapping:

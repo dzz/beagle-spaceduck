@@ -10,14 +10,19 @@ in vec2 uv;
 void main(void) {
 
     vec4 smpl_base = texture(texBuffer,uv);
-    vec4 gray = vec4( smpl_base.r, smpl_base.r, smpl_base.r, 1.0);
-    vec4 excited = smpl_base;
+    vec2 mod_uv = (uv-vec2(0.5,0.5))*2.0;
+    float luv = length(mod_uv);
+    float l = (smpl_base.r + smpl_base.g + smpl_base.g)/3.0;
+    vec4 gray = vec4(l,l,l,1.0);
+    float window_size = 0.01;
+    vec4 excited = texture(texBuffer,uv+vec2(0.0,window_size))+
+                    texture(texBuffer,uv+vec2(0.0,-window_size))+
+                    texture(texBuffer,uv+vec2(window_size,0.0))+
+                    texture(texBuffer,uv+vec2(-window_size,0.0));
+    excited = excited * gray * 0.25;
 
-    gray.b*=0.5;
-    gray.g*=0.7;
-    excited.g*0.5;
     
-    gl_FragColor = smpl_base * (1.0-(pain+excitement)) + (gray*pain) + (excited * excitement);
+    gl_FragColor = smpl_base * (1.0-(pain)) + (gray*pain) + (excited * excitement);
     //gl_FragColor = vec4(0.0,0.0,0.0,0.0);
 }
 
