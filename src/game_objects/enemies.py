@@ -31,15 +31,19 @@ class enemy(bgl.simple_tick_manager):
         bullet_pattern_params['enemy'] = self
 
         self.bullet_pattern = self.create_tickable( bullet_patterns[kwargs['bullet_pattern']['type']]( **bullet_pattern_params ) )
+        self.base_hp = kwargs['hp']
         self.hp = kwargs['hp']
         self.size = kwargs['size']
         self.rot = 0.0
         self.tick() #prime render
         
-    def register_hit(self, explosions):
-        self.hp = self.hp - 1
-        self.rot += 0.1
-        if(self.hp <= 0.0):
+    def register_hit(self, explosions,player):
+        if(self.hp > 0.0):
+            self.hp = self.hp - 1
+            if(self.hp<=0):
+                player.add_kill(self)
+            self.rot += 0.1
+        else:
             if(self.bullet_pattern):
                 self.tickables.remove(self.bullet_pattern)
                 self.bullet_pattern = None
