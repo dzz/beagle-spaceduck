@@ -42,9 +42,9 @@ class explosions(bgl.basic_sprite_renderer):
             sparams = renderable.get_shader_params()
             el = dead_item.explosion_life
             sparams["filter_color"] = [ el,el,el,el]
-            sparams["rotation_local"] = 0.0
+            sparams["rotation_local"] = [uniform(0.0,3.14)] 
             explosions.primitive.render_shaded( explosions.shader, sparams )
-            renderable.size = renderable.size * 1.4
+            renderable.size = renderable.size * 1.2
             
     def generate_textures():
         explosions.textures = []

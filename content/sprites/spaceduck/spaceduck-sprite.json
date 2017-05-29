@@ -27,7 +27,7 @@
                             "texture_name" : [
                                 { "t": 0.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_0" },
                                 { "t": 1.5, "string" : "spaceduck-sprite/texture/sd_mouth_closed_1" },
-                                { "t": 2.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_2" },
+                                { "t": 2.5, "string" : "spaceduck-sprite/texture/sd_mouth_closed_2" },
                                 { "t": 3.5, "string" : "spaceduck-sprite/texture/sd_mouth_closed_3" }
                             ]
                         }
@@ -41,17 +41,17 @@
                     "loop" : true,
                     "timescale": 8.0,
                     "start" : 0.0,
-                    "end" : 4.0,
+                    "end" : 2.0,
                     "scenes" : {
-                        "default" : { "start" : 0.0, "end" : 4.0 }
+                        "default" : { "start" : 0.0, "end" : 2.0 }
                     },
                     "curves" : {
                         "default" : { 
                             "texture_name" : [
                                 { "t": 0.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_0" },
-                                { "t": 0.8, "string" : "spaceduck-sprite/texture/sd_mouth_closed_1" },
-                                { "t": 1.6, "string" : "spaceduck-sprite/texture/sd_mouth_closed_2" },
-                                { "t": 2.4, "string" : "spaceduck-sprite/texture/sd_mouth_closed_3" }
+                                { "t": 0.5, "string" : "spaceduck-sprite/texture/sd_mouth_closed_1" },
+                                { "t": 1.0, "string" : "spaceduck-sprite/texture/sd_mouth_closed_2" },
+                                { "t": 1.5, "string" : "spaceduck-sprite/texture/sd_mouth_closed_3" }
                             ]
                         }
                     }

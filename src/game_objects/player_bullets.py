@@ -13,8 +13,8 @@ class basic_bullet():
 
     def tick(self):
         self.x += self.vx
-        self.vx *= 1.03
-        self.y = self.y + (0.02 * sin(self.x*0.3))
+        #self.vx *= 1.03
+        #self.y = self.y + (0.02 * sin(self.x*0.3))
         if(self.halo_amt<1):
             self.halo_amt += 0.04
         if(self.x > 10):
