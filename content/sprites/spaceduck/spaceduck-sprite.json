@@ -2,14 +2,14 @@
     "preload" : true,
     "resources" : {
         "texture" : [
-        { "name" : "sd_mouth_closed_0", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0000.png", "filtered" : false },
-        { "name" : "sd_mouth_closed_1", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0001.png", "filtered" : false },
-        { "name" : "sd_mouth_closed_2", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0002.png", "filtered" : false },
-        { "name" : "sd_mouth_closed_3", "filename" : "content/sprites/spaceduck/spaceduck_mouth_closed0003.png", "filtered" : false },
-        { "name" : "sd_mouth_open_0", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0000.png", "filtered" : false },
-        { "name" : "sd_mouth_open_1", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0001.png", "filtered" : false },
-        { "name" : "sd_mouth_open_2", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0002.png", "filtered" : false },
-        { "name" : "sd_mouth_open_3", "filename" : "content/sprites/spaceduck/spaceduck_mouth_open0003.png", "filtered" : false }
+        { "name" : "sd_mouth_closed_0", "filename" : "{package_path}/spaceduck_mouth_closed0000.png", "filtered" : false },
+        { "name" : "sd_mouth_closed_1", "filename" : "{package_path}/spaceduck_mouth_closed0001.png", "filtered" : false },
+        { "name" : "sd_mouth_closed_2", "filename" : "{package_path}/spaceduck_mouth_closed0002.png", "filtered" : false },
+        { "name" : "sd_mouth_closed_3", "filename" : "{package_path}/spaceduck_mouth_closed0003.png", "filtered" : false },
+        { "name" : "sd_mouth_open_0", "filename" :   "{package_path}/spaceduck_mouth_open0000.png", "filtered" : false },
+        { "name" : "sd_mouth_open_1", "filename" :   "{package_path}/spaceduck_mouth_open0001.png", "filtered" : false },
+        { "name" : "sd_mouth_open_2", "filename" :   "{package_path}/spaceduck_mouth_open0002.png", "filtered" : false },
+        { "name" : "sd_mouth_open_3", "filename" :   "{package_path}/spaceduck_mouth_open0003.png", "filtered" : false }
         ],
             "curve_sequence" : [
             {
