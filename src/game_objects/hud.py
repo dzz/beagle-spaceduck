@@ -33,10 +33,10 @@ class hud():
         with bgl.context.render_target( self.framebuffer ):
             bgl.context.clear(0.0,0.0,0.0,0.0)
             with bgl.blendmode.alpha_over:
-                bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 0,0, [0.0,0.0,0.0] )
-                bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 1,0, filtered_hp_color )
-                bgl.lotext.render_text_pixels(money_str, 320-(8*len(money_str)),110, [0.0,0.0,0.0] )
-                bgl.lotext.render_text_pixels(money_str, 320-(8*len(money_str)),111, filtered_money_color )
+                bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 0,0, filtered_hp_color )
+                bgl.lotext.render_text_pixels("HP:{0}".format(health_str), 0,1, [0.2,0.0,1.0] )
+                bgl.lotext.render_text_pixels(money_str, 320-(8*len(money_str)),110, filtered_money_color )
+                bgl.lotext.render_text_pixels(money_str, 320-(8*len(money_str)),111, [0.5,0.0,1.0] )
 
     def render(self):
         with bgl.blendmode.alpha_over:

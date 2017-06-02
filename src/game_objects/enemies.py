@@ -42,12 +42,12 @@ class enemy(bgl.simple_tick_manager):
             self.hp = self.hp - 1
             if(self.hp<=0):
                 player.add_kill(self)
+                explosions.add_explosion( self )
             self.rot += 0.1
         else:
             if(self.bullet_pattern):
                 self.tickables.remove(self.bullet_pattern)
                 self.bullet_pattern = None
-            explosions.add_explosion( self )
 
     def tick(self):
         self.rot *=0.9

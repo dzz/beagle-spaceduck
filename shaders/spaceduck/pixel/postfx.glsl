@@ -15,10 +15,10 @@ void main(void) {
     float l = (smpl_base.r + smpl_base.g + smpl_base.g)/3.0;
     vec4 gray = vec4(l,l,l,1.0);
     float window_size = 0.01;
-    vec4 excited = texture(texBuffer,uv+vec2(0.0,window_size))+
-                    texture(texBuffer,uv+vec2(0.0,-window_size))+
-                    texture(texBuffer,uv+vec2(window_size,0.0))+
-                    texture(texBuffer,uv+vec2(-window_size,0.0));
+    vec4 excited =  texture(texBuffer,uv+vec2(0.0,window_size))+
+                    (vec4(1.0,0.0,0.0,1.0)*texture(texBuffer,uv+vec2(0.0,-window_size)))+
+                    (vec4(0.0,1.0,0.0,1.0)*texture(texBuffer,uv+vec2(window_size,0.0)))+
+                    (vec4(0.0,0.0,1.0,1.0)*texture(texBuffer,uv+vec2(-window_size,0.0)));
     excited = excited * gray * 0.25;
 
     

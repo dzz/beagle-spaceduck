@@ -27,14 +27,13 @@ class game(bgl.simple_tick_manager, bgl.basic_web_app):
         self.starfield = self.create_tickable( starfield() )
         self.collisions = self.create_tickable( collisions( player = self.player, enemies = self.enemies, enemy_bullets = self.enemy_bullets ))
 
-
     def render(self):
         with bgl.context.render_target( self.last_frame):
             self.current_frame.render_processed( game.passthru_shader )
 
         with bgl.context.render_target( self.blur_effects_buffer):
                 with bgl.blendmode.alpha_over:
-                    uniform_fade.apply_fadeout(0.2)
+                    uniform_fade.apply_fadeout(0.9 - (0.85*self.collisions.explosions.explosion_impulse))
                 with bgl.blendmode.add:
                     #self.starfield.render()
                     self.collisions.render()

@@ -28,7 +28,9 @@ class player(bgl.simple_tick_manager):
 
     def tick(self):
         if self.display_money < self.money:
-            self.display_money = self.display_money + 1
+            self.display_money = self.display_money + 50
+        if self.display_money > self.money:
+            self.display_money = self.money
 
         self.injury_impulse = self.injury_impulse * 0.8
         self.gamepad = bgl.gamepads.find_primary()
@@ -41,7 +43,7 @@ class player(bgl.simple_tick_manager):
         else:
             self.firing = False
 
-        if( diff_y < 0.0 ):
+        if( self.gamepad.left_stick[1] < -0.3 ):
             self.flapping = True
         else:
             self.flapping = False

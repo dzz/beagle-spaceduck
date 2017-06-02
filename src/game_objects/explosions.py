@@ -5,13 +5,13 @@ from itertools import chain
 
 class explosions(bgl.basic_sprite_renderer):
     textures = None
-    num_textures = 32
+    num_textures = 16
     primitive = bgl.primitive.unit_uv_square 
     shader = bgl.assets.get("beagle-2d/shader/beagle-2d")
 
     def generate_texture():
-        size = choice( [ 8, 16, 32 ] )
-        num_parts = choice([24,48])
+        size = choice( [ 32,64,128,256 ] )
+        num_parts = int(uniform(8.0,size))
         colors = [ [1.0,0.0,1.0,1.0],
                     [0.5,0.0,1.0,1.0],[1.0,1.0,1.0,1.0] ]
         image = []
@@ -34,17 +34,17 @@ class explosions(bgl.basic_sprite_renderer):
         dead_item.explosion_life = 1.0
         self.dead_items.append( dead_item )
         self.explosion_impulse = 1.0
+        dead_item.texture = choice( explosions.textures )
 
     def render(self):
         for renderable in self.dead_items:
             dead_item = renderable
-            renderable.texture = choice( explosions.textures )
             sparams = renderable.get_shader_params()
             el = dead_item.explosion_life
-            sparams["filter_color"] = [ el,el,el,el]
-            sparams["rotation_local"] = [uniform(0.0,3.14)] 
+            sparams["filter_color"] = [ el,el,el,el*0.5]
+            sparams["rotation_local"] = 0.0
             explosions.primitive.render_shaded( explosions.shader, sparams )
-            renderable.size = renderable.size * 1.2
+            renderable.size = renderable.size * 1.1
             
     def generate_textures():
         explosions.textures = []
@@ -52,9 +52,9 @@ class explosions(bgl.basic_sprite_renderer):
             explosions.textures.append( explosions.generate_texture() )
 
     def tick(self):
-        self.explosion_impulse = self.explosion_impulse * 0.95
+        self.explosion_impulse = self.explosion_impulse * 0.98
         for dead_item in self.dead_items:
-            dead_item.explosion_life = dead_item.explosion_life *0.7
+            dead_item.explosion_life = dead_item.explosion_life *0.9
             dead_item.tick()
             if dead_item.explosion_life < 0.1:
                 self.dead_items.remove(dead_item)
