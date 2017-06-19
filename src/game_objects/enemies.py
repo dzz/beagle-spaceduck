@@ -134,6 +134,6 @@ class enemies(bgl.simple_tick_manager):
                 )
 
     def render( self ):
-        for enemy in self.enemies.tickables:
+        for enemy in sorted( self.enemies.tickables, key=lambda x: x.texture._tex ):
             enemies.primitive.render_shaded( enemies.shader, enemy.get_shader_params() )
 
