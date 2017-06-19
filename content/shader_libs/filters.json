@@ -4,8 +4,8 @@
         "shader" : [
             {
                 "name" : "postfx_filter",
-                "vertex_program" : "beagle-2d/vertex/no_transform",
-                "pixel_program" : "spaceduck/pixel/postfx"
+                "vertex_program" : "{beagle-2d}/vertex/no_transform",
+                "pixel_program" : "{package_path}/spaceduck/pixel/postfx"
             }
         ]
     }
